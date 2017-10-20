@@ -1,0 +1,41 @@
+package com.yu.app.service;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.yu.app.entity.Oil;
+import com.yu.app.repository.OilRepository;
+
+@Service
+public class OilService {
+	@Autowired
+	private OilRepository oilRepository;
+	
+	@Transactional
+	public void delete(Integer id){
+		oilRepository.delete(id);
+	}
+	
+	@Transactional(readOnly=true)
+	public Oil get(Integer id){
+		return oilRepository.findOne(id);
+	}
+	
+	@Transactional
+	public void save(Oil oil){
+		oil.setId(-1);
+		oil.setDate(new Date());
+		oilRepository.saveAndFlush(oil);
+	}
+		
+	@Transactional(readOnly=true)
+	public Page<Oil> getPage(int pageNo, int pageSize){
+		PageRequest pageable = new PageRequest(pageNo - 1, pageSize);
+		return oilRepository.findAll(pageable);
+	}
+} 

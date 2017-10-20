@@ -1,0 +1,11 @@
+package com.yu.app.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.yu.app.entity.Oil;
+
+public interface OilRepository extends JpaRepository<Oil, Integer> {
+
+	
+
+}

@@ -1,0 +1,4 @@
+jdbc.user=root
+jdbc.password=qwesza
+jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.jdbcUrl=jdbc:mysql:///h2
